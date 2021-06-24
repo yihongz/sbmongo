@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
-import br.com.grokhong.sbmongo.domain.User;
-import br.com.grokhong.sbmongo.repository.UserRepository;
+import br.com.grokhong.sbmongo.entities.User;
+import br.com.grokhong.sbmongo.repositories.UserRepository;
 
 @Configuration
 public class Instantation implements CommandLineRunner {

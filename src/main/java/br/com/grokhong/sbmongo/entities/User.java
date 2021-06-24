@@ -1,4 +1,4 @@
-package br.com.grokhong.sbmongo.domain;
+package br.com.grokhong.sbmongo.entities;
 
 import java.io.Serializable;
 

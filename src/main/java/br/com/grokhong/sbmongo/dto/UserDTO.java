@@ -2,7 +2,7 @@ package br.com.grokhong.sbmongo.dto;
 
 import java.io.Serializable;
 
-import br.com.grokhong.sbmongo.domain.User;
+import br.com.grokhong.sbmongo.entities.User;
 
 public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
