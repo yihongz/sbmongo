@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
+import br.com.grokhong.sbmongo.dto.AuthorDTO;
 import br.com.grokhong.sbmongo.entities.Post;
 import br.com.grokhong.sbmongo.entities.User;
 import br.com.grokhong.sbmongo.repositories.PostRepository;
@@ -32,8 +33,8 @@ public class Instantation implements CommandLineRunner {
 		
 		userRepository.saveAll(Arrays.asList(maria, alex, bob));
 		
-		Post p1 = new Post(null, Instant.parse("2018-03-21T19:53:07Z"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", maria);
-		Post p2 = new Post(null, Instant.parse("2018-03-23T08:24:07Z"), "Bom dia", "Acordei feliz hoje!", maria);
+		Post p1 = new Post(null, Instant.parse("2018-03-21T19:53:07Z"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(maria));
+		Post p2 = new Post(null, Instant.parse("2018-03-23T08:24:07Z"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria));
 		
 		postRepository.saveAll(Arrays.asList(p1, p2));
 	}
