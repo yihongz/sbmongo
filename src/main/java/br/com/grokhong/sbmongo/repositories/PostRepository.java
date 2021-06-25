@@ -3,6 +3,7 @@ package br.com.grokhong.sbmongo.repositories;
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.grokhong.sbmongo.entities.Post;
@@ -10,5 +11,8 @@ import br.com.grokhong.sbmongo.entities.Post;
 @Repository
 public interface PostRepository extends MongoRepository<Post, String> {
 
+	@Query("{ 'title': { $regex: ?0, $options: 'i' } }")
+	List<Post> searchTitle(String text);
+	
 	List<Post> findByTitleContainingIgnoreCase(String text);
 }
