@@ -1,5 +1,7 @@
 package br.com.grokhong.sbmongo.services;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,5 +25,10 @@ public class PostService {
 	
 	public List<Post> findByTitle(String text) {
 		return repo.searchTitle(text);
+	}
+	
+	public List<Post> fullSearch(String text, Instant minDate, Instant maxDate) {
+		Instant value = maxDate.plus(1, ChronoUnit.DAYS);
+		return repo.fullSearch(text, minDate, value);
 	}
 }

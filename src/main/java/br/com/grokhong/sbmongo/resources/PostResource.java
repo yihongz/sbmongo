@@ -1,5 +1,7 @@
 package br.com.grokhong.sbmongo.resources;
 
+import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,21 @@ public class PostResource {
 		text = URL.decodeParam(text);
 		
 		List<Post> list = service.findByTitle(text);
+		return ResponseEntity.ok().body(list);
+	}
+	
+	@GetMapping(value = "/fullsearch")
+	public ResponseEntity<List<Post>> fullSearch(
+			@RequestParam(value="text", defaultValue="") String text,
+			@RequestParam(value="minDate", defaultValue="") String minDate,
+			@RequestParam(value="maxDate", defaultValue="") String maxDate
+			) {
+		text = URL.decodeParam(text);
+
+		Instant min = URL.convertDate(minDate, new Date(0L));
+		Instant max = URL.convertDate(maxDate, new Date());
+		
+		List<Post> list = service.fullSearch(text, min, max);
 		return ResponseEntity.ok().body(list);
 	}
 }
