@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import br.com.grokhong.sbmongo.dto.AuthorDTO;
+import br.com.grokhong.sbmongo.dto.CommentDTO;
 import br.com.grokhong.sbmongo.entities.Post;
 import br.com.grokhong.sbmongo.entities.User;
 import br.com.grokhong.sbmongo.repositories.PostRepository;
@@ -33,8 +34,15 @@ public class Instantation implements CommandLineRunner {
 		
 		userRepository.saveAll(Arrays.asList(maria, alex, bob));
 		
-		Post p1 = new Post(null, Instant.parse("2018-03-21T19:53:07Z"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(maria));
-		Post p2 = new Post(null, Instant.parse("2018-03-23T08:24:07Z"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria));
+		Post p1 = new Post(null, Instant.parse("2018-03-21T19:53:47Z"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(maria));
+		Post p2 = new Post(null, Instant.parse("2018-03-23T08:24:23Z"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria));
+
+		CommentDTO c1 = new CommentDTO("Boa viagem mano!", Instant.parse("2018-03-21T21:20:07Z"), new AuthorDTO(alex));
+		CommentDTO c2 = new CommentDTO("Aproveite!", Instant.parse("2018-03-22T13:08:24Z"), new AuthorDTO(bob));
+		CommentDTO c3 = new CommentDTO("Tenha um ótimo dia!", Instant.parse("2018-03-23T09:17:45Z"), new AuthorDTO(bob));
+		
+		p1.getComments().addAll(Arrays.asList(c1, c2));
+		p2.getComments().addAll(Arrays.asList(c3));
 		
 		postRepository.saveAll(Arrays.asList(p1, p2));
 		
